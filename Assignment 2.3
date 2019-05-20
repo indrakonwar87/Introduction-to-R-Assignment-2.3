@@ -1,0 +1,44 @@
+How to Import SAS XPORT Files into R With The foreign package
+Answer-
+SAS date, time, and date/time variables are converted respectively to Date, POSIX, or chron objects
+
+SAS labels are stored in "label" attributes on each variable, and are accessible using the label function.
+
+SAS formats are stored in "SASformat" attributes on each variable, and are accessable using SASformat
+
+SAS iformats are stored in "SASiformat" attributes on each variable, and are accessable using SASiformat
+
+SAS integer variables are stored as integers unless force.integer is FALSE
+
+If the file includes the output of PROC FORMAT CNTLOUT=, variables having customized label formats will be converted to factor objects with appropriate labels.
+
+If a datasets in the original file has a label or type, these will be stored in the corresponding 'lable' and 'SAStype' attributes, which can be accessed by the label and SAStype functions.
+
+If only a single dataset is present (after removing PROC FORMAT data when include.formats=FALSE), the return value is a single dataframe object. Otherwise the return is a list of dataframe objects.
+
+Note that if include.formats=TRUE, the returned list will contain a dataframe named "FORMATS" containing any available 'PROC FORMAT' information.
+
+2. How To Import SAS Files into R With The haven Package?
+Answer-
+read_sas() supports both sas7bdat files and the accompanying sas7bcat files that SAS uses to record value labels. write_sas() is currently experimental and only works for limited datasets.
+
+Usage
+1 read_sas(data_file, catalog_file = NULL, encoding = NULL
+2 catalog_encoding = encoding, cols_only = NULL)
+3 
+4 write_sas(data, path)
+
+Value
+A tibble, data frame variant with nice defaults.
+
+Variable labels are stored in the "label" attribute of each variable. It is not printed on the console, but the RStudio viewer will show it.
+
+write_sas() returns the input data invisibly.
+
+3. How to read Weka Attribute-Relation File Format (ARFF) files in R?
+Answer-
+Usage
+1 read.arff(file)
+
+
+
